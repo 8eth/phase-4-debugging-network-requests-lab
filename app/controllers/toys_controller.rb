@@ -7,13 +7,17 @@ class ToysController < ApplicationController
   end
 
   def create
-    toy = Toys.create(toy_params)
+    # Add a new toy when the toy form is submitted - updated the following #toy = Toys.create(toy_params)
+    toy = Toy.create(toy_params)
+
     render json: toy, status: :created
   end
 
   def update
     toy = Toy.find_by(id: params[:id])
     toy.update(toy_params)
+    # Update the number of likes for a toy - added the render line below
+    render json: toy
   end
 
   def destroy
